@@ -3,19 +3,23 @@ import Scaledrone from 'scaledrone-react';
 
 function App() {
 
-const [messages, setMessages] = useState ([]);
-const [messageInput, setMessageInput] =useState ('');
+const [messages, setMessages] = useState([]);
+const [messageInput, setMessageInput] = useState('');
 
 const drone = new Scaledrone('ImB5jZWgMgCKsQPL');
 
 
-useEffect(
-  () => {
-    drone.on('message', (message)=>{
-      const newMessage = { author: messagemenber.clientData-name,text: message.data};
-      setMessages((prevMessages) => [...prevMessages, newMessages]);
+useEffect(() => {
+    drone.on('open', error =>{
+      if (error) { console.error(error);}
     });
-  }, []);
+drone.on('message',(message, user) => {
+  const newMessage = { author: user.clientData.name, text: message.data};
+setMessages(prevMessages => [...prevMessages, newMessage]);
+});
+}, []);
+
+
 
   const handleInputChange = (event) => {
     setMessageInput(event.target.value);
