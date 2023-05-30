@@ -43,7 +43,7 @@ setMessages(prevMessages => [...prevMessages, newMessage]);
           messages.map((message, index) => (
             <div key={index} className="Message">
               <span className="Author">{message.author}</span>
-              <span className="Text">{message.tekst}</span>
+              <span className="Text">{message.text}</span>
               </div>
           )
           )
