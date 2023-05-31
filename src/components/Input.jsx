@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 function Input(props) {
   const [text, setText] = useState('');
 
-  const onChange = (e) => {
+  const onChange =(e) => {
     setText(e.target.value);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit =(e)=> {
     e.preventDefault();
     setText('');
     props.onSendMessage(text);

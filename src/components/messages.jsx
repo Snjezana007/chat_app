@@ -44,7 +44,7 @@ function Messages(props) {
         </ul>
       ) : (
         <ul className="Messages-list">
-          <li className="text-center">Start typing...</li>
+          <li className="text-center">Start typing message...</li>
         </ul>
       )}
     </div>
