@@ -32,69 +32,15 @@ room.on("message", (message) => {
 
 
 
-}
-)
-
-const [messageInput, setMessageInput] = useState('');
-
-const drone = new setDrone('ImB5jZWgMgCKsQPL');
-
-
-useEffect(() => {
-    drone.on('open', error =>{
-      if (error) { console.error(error);}
-    });
-drone.on('message',(message, user) => {
-  const newMessage = { author: user.clientData.name, text: message.data};
-setMessages(prevMessages => [...prevMessages, newMessage]);
-});
-}, []);
-
-
-
-  const handleInputChange = (event) => {
-    setMessageInput(event.target.value);
-  };
-
-  const handleSendmessage = () => {
-    if (messageInput.trim() !== '') {
-      drone.publish({ 
-        room: 'chat', 
-        message: messageInput.trim(),
-      });
-      setMessageInput('');
-    }
-  };
-
-
   return (
     <div className="App">
-      <div className="ChatWindow">
-        {
-          messages.map((message, index) => (
-            <div key={index} className="Message">
-              <span className="Author">{message.author}</span>
-              <span className="Text">{message.text}</span>
-              </div>
-          )
-          )
-        } 
-      </div>
-
-      <div className="InputContainer">
-<input type="text"
-className="MessageInput" 
-value={messageInput}
-onChange={handleInputChange}
-placeholder="Type your message..."/>
-
-<button className="SendButton" 
-onClick={handleSendmessage}> Send 
-</button>
-
-      </div>
-    </div>
+      
+      <h1>Algebra Chat App</h1>
+      <OnlineMembers onlineMembers={onlineMembers} currentMember={member} />
+      <Messages messages={messages} currentMember={member} />
+      <Input onSendMessage={onSendMessage} />     </div>
   );
-
 }
+
 export default App;
+
