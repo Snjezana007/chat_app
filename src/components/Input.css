@@ -1,0 +1,30 @@
+form {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 10px auto 20px;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: rgba(0, 174, 255, 0.61);
+  color: wheat;
+  border: none;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+
+input {
+  padding: 5px;
+  padding-left: 10px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(19, 18, 18, 0.01);
+  backdrop-filter: blur(5.1px);
+  -webkit-backdrop-filter: blur(55.1px);
+  border: 1px solid rgba(255, 255, 255, 0.61);
+  flex-grow: 1;
+}
