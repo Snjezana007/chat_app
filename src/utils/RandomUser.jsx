@@ -1,4 +1,4 @@
-export function randomName() {
+ function randomName() {
     const adjectives = [
       "Green", "Yellow", "Red", "Orange", "Blue", "Purple", "Violet", "Gold",
 "White", "Turquoise", "Teal", "Coral", "Magenta", "Maroon", "Lavender",
@@ -15,9 +15,14 @@ export function randomName() {
 
     const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
     const noun = nouns[Math.floor(Math.random() * nouns.length)];
-    return adjective + "  " + noun;
+    const uppercaseAdjective = adjective.charAt(0).toUpperCase + adjective.slice(1);
+    return uppercaseAdjective + " " + noun;
+
   }
   
- export function randomColor() {
+  function randomColor() {
     return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
   }
+
+  export { randomColor, randomName};
+  
