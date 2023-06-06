@@ -1,7 +1,7 @@
 
 function OnlineMembers
 (
-    { onlineMembers, currentMembers}
+    { onlineMembers, currentMember}
 )
 {
     const {id} = member;
@@ -23,3 +23,4 @@ return (
     </ul>
 );
 
+export { OnlineMembers };
