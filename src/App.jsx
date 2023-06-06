@@ -1,13 +1,13 @@
 import {useState, useEffect } from 'react';
 import "./App.css";
-import { Input, Messages, OnlineMembers } from "./components";
+import { Input, Messages, OnlineMembers } from "../src/components";
 import { randomColor, randomName } from "./RandomUserHelpers/RandomUser";
 
 
 function App() {
 
 const [messages, setMessages] = useState([]);
-const [member, setmember] = useState ({
+const [member, setMember] = useState ({
   username: randomName(),
   color: randomColor(),
 });
@@ -16,20 +16,44 @@ const [room, setRoom]= useState(null);
 const [onlineMembers, setOnlineMembers] = useState([]);
 
 useEffect(() => {
-  const drone = new window.Scaledrone(ImB5jZWgMgCKsQPL, {data: member,});
+  const drone = new window.Scaledrone("ImB5jZWgMgCKsQPL", {data: member,});
 drone.on("open", (error) => {
   if (error) {
     return console.error(error);
   }
   member.id = drone.clientId;
-  setmember(member);
+  setMember(member);
 });
+
 const room = drone.subscribe("observable-room");
 room.on("message", (message) => {
-  setMessages((prevState)) => [...prevState, message]);
-
+  setMessages((prevState)) => [...prevState, message];
 });
 
+
+room.on("members", (currentMembers) => {
+  setOnlineMembers([...currentMembers]);
+});
+
+room.on("member_join", (member) => {
+  setOnlineMembers((prevOnlineMembers) => [...prevOnlineMembers, member]);
+});
+
+room.on("member_leave", (memberLeft) => {
+  setOnlineMembers((prevMembers) =>
+    prevMembers.filter((member) => member.id !== memberLeft.id)
+  );
+});
+
+setDrone(drone);
+}, []);
+
+const onSendMessage = (message) => {
+drone.publish({
+  room: "observable-room",
+  message,
+});
+};
 
 
   return (
