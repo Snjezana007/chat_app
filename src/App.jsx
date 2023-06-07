@@ -1,7 +1,7 @@
 import {useState, useEffect } from 'react';
 import "./App.css";
 import { Input, Messages, OnlineMembers } from "../src/components";
-import { randomColor, randomName } from "./RandomUserHelpers/RandomUser";
+import { randomColor, randomName } from "./helpers/RandomUser";
 
 
 function App() {
@@ -15,8 +15,12 @@ const [drone, setDrone] = useState(null);
 const [room, setRoom]= useState(null);
 const [onlineMembers, setOnlineMembers] = useState([]);
 
-useEffect(() => {
-  const drone = new window.Scaledrone("ImB5jZWgMgCKsQPL", {data: member,});
+const sId = `${process.env.REACT_APP_CHANNEL_ID}`
+
+    this.drone = new window.Scaledrone(sId, {
+      data: this.state.member,
+    });
+
 drone.on("open", (error) => {
   if (error) {
     return console.error(error);
